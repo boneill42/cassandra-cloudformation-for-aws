@@ -1,19 +1,31 @@
-Install AWS CLI:
-http://docs.aws.amazon.com/cli/latest/userguide/installing.html
+This repo contains scripts for installing Cassandra on a AWS cluster.
 
-Run:
-```
-aws configure
-```
-
-Set your default region to:
-```
-Default region name [None]: us-east-1
-```
+It works in conjunction with the CloudFormation template found here:
+https://github.com/boneill42/hpcc-cassandra-cluster-on-aws
 
 
-You can validate a cloudformation template with the following:
+You can kick off the cloud formation with:
 ```
-aws cloudformation validate-template --template-url https://s3.amazonaws.com/cloudformation-templates-us-east-1/S3_Bucket.template
+create_stack.sh
 ```
+
+Then, you can check on the status of the cloud with:
+```
+get_status.sh
+```
+
+After the cloud forms, you simply run:
+```
+python configure_cassandra_cluster.py
+```
+
+This will install and configure Cassandra on each of the nodes.
+
+Once you are done, you can run:
+```
+delete_stack.sh
+```
+
+This will tear down the EC2 instances.
+
 
